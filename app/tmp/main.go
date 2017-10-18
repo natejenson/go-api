@@ -29,7 +29,7 @@ func main() {
 	revel.Init(*runMode, *importPath, *srcPath)
 	revel.INFO.Println("Running revel server")
 	
-	revel.RegisterController((*controllers.App)(nil),
+	revel.RegisterController((*controllers.Up)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Index",

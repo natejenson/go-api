@@ -4,10 +4,10 @@ import (
 	"github.com/revel/revel"
 )
 
-type App struct {
+type Up struct {
 	*revel.Controller
 }
 
-func (c App) Index() revel.Result {
+func (c Up) Index() revel.Result {
 	return c.Render()
 }

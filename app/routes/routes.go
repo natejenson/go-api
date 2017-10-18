@@ -4,15 +4,15 @@ package routes
 import "github.com/revel/revel"
 
 
-type tApp struct {}
-var App tApp
+type tUp struct {}
+var Up tUp
 
 
-func (_ tApp) Index(
+func (_ tUp) Index(
 		) string {
 	args := make(map[string]string)
 	
-	return revel.MainRouter.Reverse("App.Index", args).URL
+	return revel.MainRouter.Reverse("Up.Index", args).URL
 }
 
 

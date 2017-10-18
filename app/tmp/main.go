@@ -5,12 +5,12 @@ import (
 	"flag"
 	"reflect"
 	"github.com/revel/revel"
+	_ "github.com/natejenson/go-api/app"
+	controllers "github.com/natejenson/go-api/app/controllers"
+	tests "github.com/natejenson/go-api/tests"
 	controllers0 "github.com/revel/modules/static/app/controllers"
 	_ "github.com/revel/modules/testrunner/app"
 	controllers1 "github.com/revel/modules/testrunner/app/controllers"
-	_ "go-api/app"
-	controllers "go-api/app/controllers"
-	tests "go-api/tests"
 	"github.com/revel/revel/testing"
 )
 

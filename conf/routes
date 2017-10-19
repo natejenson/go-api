@@ -9,6 +9,7 @@ module:testrunner
 
 GET     /                                       Up.Index
 GET     /up/                                    Up.Index
+GET     /lists/:id                              Lists.Get
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

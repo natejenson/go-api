@@ -4,6 +4,20 @@ package routes
 import "github.com/revel/revel"
 
 
+type tLists struct {}
+var Lists tLists
+
+
+func (_ tLists) Get(
+		id int,
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "id", id)
+	return revel.MainRouter.Reverse("Lists.Get", args).URL
+}
+
+
 type tUp struct {}
 var Up tUp
 

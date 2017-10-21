@@ -10,7 +10,7 @@ type Lists struct {
 }
 
 func (c Lists) Get(id int) revel.Result {
-	l := new(List)
-	l.id = id
+	l := new(models.List)
+	l.Id = id
 	return c.RenderJSON(l)
 }

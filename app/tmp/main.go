@@ -29,7 +29,7 @@ func main() {
 	revel.Init(*runMode, *importPath, *srcPath)
 	revel.INFO.Println("Running revel server")
 	
-	revel.RegisterController((*controllers.Lists)(nil),
+	revel.RegisterController((*controllers.Todos)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
 				Name: "Get",

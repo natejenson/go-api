@@ -8,8 +8,15 @@ type tTodos struct {}
 var Todos tTodos
 
 
+func (_ tTodos) GetAll(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Todos.GetAll", args).URL
+}
+
 func (_ tTodos) Get(
-		id int,
+		id string,
 		) string {
 	args := make(map[string]string)
 	

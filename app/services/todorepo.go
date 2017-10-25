@@ -11,6 +11,7 @@ import (
 type TodoRepo interface {
 	Get(id uuid.UUID) (*models.Todo, error)
 	GetAll() []*models.Todo
+	Create(todo models.Todo) *uuid.UUID
 }
 
 // InMemoryTodos represents a concurrent, in-memory repository of Todos
@@ -37,8 +38,16 @@ func (r *InMemoryTodos) GetAll() []*models.Todo {
 	return m
 }
 
+// Create makes a Todo and returns its UUID
+func (r *InMemoryTodos) Create(todo models.Todo) *uuid.UUID {
+	u, _ := uuid.NewV4()
+	todo.ID = u.String()
+	r.todos[*u] = &todo
+	return u
+}
+
 // New creates an initialized todo repository
-func New() *InMemoryTodos {
+func new() *InMemoryTodos {
 	a, _ := uuid.NewV4()
 	b, _ := uuid.NewV4()
 	c, _ := uuid.NewV4()
@@ -56,7 +65,7 @@ var todoRepo *InMemoryTodos
 // GetTodoRepo gets the TodoRepo singleton instance
 func GetTodoRepo() (r TodoRepo) {
 	if todoRepo == nil {
-		todoRepo = New()
+		todoRepo = new()
 	}
 	return todoRepo
 }

@@ -1,8 +1,8 @@
 package models
 
-// a Todo is a task
+// A Todo is a task
 type Todo struct {
-	ID    int
+	ID    string
 	Done  bool
 	Title string
 }

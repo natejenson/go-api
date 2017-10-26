@@ -24,6 +24,15 @@ func (_ tTodos) Get(
 	return revel.MainRouter.Reverse("Todos.Get", args).URL
 }
 
+func (_ tTodos) Create(
+		todo interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "todo", todo)
+	return revel.MainRouter.Reverse("Todos.Create", args).URL
+}
+
 
 type tUp struct {}
 var Up tUp

@@ -10,6 +10,7 @@ module:testrunner
 GET     /                                       Up.Index
 GET     /up/                                    Up.Index
 GET     /todos/                                 Todos.GetAll
+POST    /todos/                                 Todos.Create
 GET     /todos/:id                              Todos.Get
 
 # Ignore favicon requests

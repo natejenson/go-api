@@ -7,6 +7,7 @@ import (
 	"github.com/revel/revel"
 	_ "github.com/natejenson/go-api/app"
 	controllers "github.com/natejenson/go-api/app/controllers"
+	models "github.com/natejenson/go-api/app/models"
 	tests "github.com/natejenson/go-api/tests"
 	controllers0 "github.com/revel/modules/static/app/controllers"
 	_ "github.com/revel/modules/testrunner/app"
@@ -42,6 +43,14 @@ func main() {
 				Name: "Get",
 				Args: []*revel.MethodArg{ 
 					&revel.MethodArg{Name: "id", Type: reflect.TypeOf((*string)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
+			&revel.MethodType{
+				Name: "Create",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "todo", Type: reflect.TypeOf((*models.Todo)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
 				},

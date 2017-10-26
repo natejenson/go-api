@@ -1,6 +1,9 @@
 package controllers
 
 import (
+	"strings"
+
+	"github.com/natejenson/go-api/app/models"
 	"github.com/natejenson/go-api/app/services"
 	"github.com/nu7hatch/gouuid"
 	"github.com/revel/revel"
@@ -24,7 +27,33 @@ func (c Todos) Get(id string) revel.Result {
 	return c.RenderJSON(todo)
 }
 
+// Create a todo item
+func (c Todos) Create(todo models.Todo) revel.Result {
+	todo.Title = strings.TrimSpace(todo.Title)
+	if len(todo.Title) == 0 {
+		return c.errResponse(400, "A todo must have a title.")
+	}
+	u := services.GetTodoRepo().Create(todo)
+	return c.response(201, u.String())
+}
+
 func parseUUID(id string) (uuid.UUID, error) {
 	u, err := uuid.ParseHex(id)
 	return *u, err
+}
+
+func (c Todos) response(status int, o interface{}) revel.Result {
+	res := make(map[string]interface{})
+	res["data"] = o
+	res["error"] = nil
+	c.Response.Status = status
+	return c.RenderJSON(res)
+}
+
+func (c Todos) errResponse(status int, errMsg string) revel.Result {
+	res := make(map[string]interface{})
+	res["data"] = nil
+	res["error"] = errMsg
+	c.Response.Status = status
+	return c.RenderJSON(res)
 }

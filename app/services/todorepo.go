@@ -65,8 +65,8 @@ func new() *InMemoryTodos {
 	return &InMemoryTodos{
 		todos: map[uuid.UUID]*models.Todo{
 			*a: &models.Todo{ID: a.String(), Title: "Walk the dog"},
-			*b: &models.Todo{ID: a.String(), Title: "Go to Mars"},
-			*c: &models.Todo{ID: a.String(), Title: "Go outside"},
+			*b: &models.Todo{ID: b.String(), Title: "Go to Mars"},
+			*c: &models.Todo{ID: c.String(), Title: "Go outside"},
 		},
 	}
 }

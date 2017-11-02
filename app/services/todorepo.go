@@ -12,6 +12,7 @@ type TodoRepo interface {
 	Get(id uuid.UUID) (*models.Todo, error)
 	GetAll() []*models.Todo
 	Create(todo models.Todo) *uuid.UUID
+	Overwrite(id uuid.UUID, todo models.Todo) error
 }
 
 // InMemoryTodos represents a concurrent, in-memory repository of Todos
@@ -46,12 +47,13 @@ func (r *InMemoryTodos) Create(todo models.Todo) *uuid.UUID {
 	return u
 }
 
+// Overwrite a todo if one with the given UUID exists
 func (r *InMemoryTodos) Overwrite(uuid uuid.UUID, todo models.Todo) error {
 	todo.ID = uuid.String()
-	if _, ok := r.todos[*uuid]; !ok {
+	if _, ok := r.todos[uuid]; !ok {
 		return errors.New("Todo not found")
 	}
-	r.todos[*uuid] = &todo
+	r.todos[uuid] = &todo
 	return nil
 }
 

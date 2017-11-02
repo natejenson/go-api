@@ -55,6 +55,15 @@ func main() {
 				RenderArgNames: map[int][]string{ 
 				},
 			},
+			&revel.MethodType{
+				Name: "Edit",
+				Args: []*revel.MethodArg{ 
+					&revel.MethodArg{Name: "id", Type: reflect.TypeOf((*string)(nil)) },
+					&revel.MethodArg{Name: "todo", Type: reflect.TypeOf((*models.Todo)(nil)) },
+				},
+				RenderArgNames: map[int][]string{ 
+				},
+			},
 			
 		})
 	

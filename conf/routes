@@ -12,6 +12,7 @@ GET     /up/                                    Up.Index
 GET     /todos/                                 Todos.GetAll
 POST    /todos/                                 Todos.Create
 GET     /todos/:id                              Todos.Get
+PATCH   /todos/:id                              Todos.Edit
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

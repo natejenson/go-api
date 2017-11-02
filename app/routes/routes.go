@@ -33,6 +33,17 @@ func (_ tTodos) Create(
 	return revel.MainRouter.Reverse("Todos.Create", args).URL
 }
 
+func (_ tTodos) Edit(
+		id string,
+		todo interface{},
+		) string {
+	args := make(map[string]string)
+	
+	revel.Unbind(args, "id", id)
+	revel.Unbind(args, "todo", todo)
+	return revel.MainRouter.Reverse("Todos.Edit", args).URL
+}
+
 
 type tUp struct {}
 var Up tUp

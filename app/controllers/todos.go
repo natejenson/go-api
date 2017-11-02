@@ -37,6 +37,22 @@ func (c Todos) Create(todo models.Todo) revel.Result {
 	return c.response(201, u.String())
 }
 
+// Edit a todo item
+func (c Todos) Edit(id string, todo models.Todo) revel.Result {
+	uuid, _ := parseUUID(id)
+	t, _ := services.GetTodoRepo().Get(uuid)
+
+	if t == nil {
+		return c.errResponse(404, "The todo could not be found.")
+	}
+
+	err := services.GetTodoRepo().Overwrite(uuid, todo)
+	if err != nil {
+		return c.errResponse(400, err.Error())
+	}
+	return c.response(204, nil)
+}
+
 func parseUUID(id string) (uuid.UUID, error) {
 	u, err := uuid.ParseHex(id)
 	return *u, err

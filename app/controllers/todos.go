@@ -53,6 +53,13 @@ func (c Todos) Edit(id string, todo models.Todo) revel.Result {
 	return c.response(204, nil)
 }
 
+// Delete a todo
+func (c Todos) Delete(id string) revel.Result {
+	uuid, _ := parseUUID(id)
+	services.GetTodoRepo().Delete(uuid)
+	return c.response(204, nil)
+}
+
 func parseUUID(id string) (uuid.UUID, error) {
 	u, err := uuid.ParseHex(id)
 	return *u, err

@@ -13,6 +13,7 @@ GET     /todos/                                 Todos.GetAll
 POST    /todos/                                 Todos.Create
 GET     /todos/:id                              Todos.Get
 PATCH   /todos/:id                              Todos.Edit
+DELETE  /todos/:id                              Todos.Delete
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

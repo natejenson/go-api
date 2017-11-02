@@ -4,6 +4,18 @@ package routes
 import "github.com/revel/revel"
 
 
+type tUp struct {}
+var Up tUp
+
+
+func (_ tUp) Index(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Up.Index", args).URL
+}
+
+
 type tTodos struct {}
 var Todos tTodos
 
@@ -44,16 +56,13 @@ func (_ tTodos) Edit(
 	return revel.MainRouter.Reverse("Todos.Edit", args).URL
 }
 
-
-type tUp struct {}
-var Up tUp
-
-
-func (_ tUp) Index(
+func (_ tTodos) Delete(
+		id string,
 		) string {
 	args := make(map[string]string)
 	
-	return revel.MainRouter.Reverse("Up.Index", args).URL
+	revel.Unbind(args, "id", id)
+	return revel.MainRouter.Reverse("Todos.Delete", args).URL
 }
 
 

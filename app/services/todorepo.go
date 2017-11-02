@@ -46,6 +46,15 @@ func (r *InMemoryTodos) Create(todo models.Todo) *uuid.UUID {
 	return u
 }
 
+func (r *InMemoryTodos) Overwrite(uuid uuid.UUID, todo models.Todo) error {
+	todo.ID = uuid.String()
+	if _, ok := r.todos[*uuid]; !ok {
+		return errors.New("Todo not found")
+	}
+	r.todos[*uuid] = &todo
+	return nil
+}
+
 // New creates an initialized todo repository
 func new() *InMemoryTodos {
 	a, _ := uuid.NewV4()

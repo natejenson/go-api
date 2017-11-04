@@ -14,4 +14,7 @@
 .glide/
 
 # Revel
+tmp/
+routes/
 test-results/
+revel/revel

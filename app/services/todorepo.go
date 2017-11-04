@@ -14,6 +14,7 @@ type TodoRepo interface {
 	Create(todo models.Todo) *uuid.UUID
 	Overwrite(id uuid.UUID, todo models.Todo) error
 	Delete(id uuid.UUID)
+	DeleteAll()
 }
 
 // InMemoryTodos represents a concurrent, in-memory repository of Todos
@@ -61,6 +62,11 @@ func (r *InMemoryTodos) Overwrite(uuid uuid.UUID, todo models.Todo) error {
 // Delete a todo
 func (r *InMemoryTodos) Delete(uuid uuid.UUID) {
 	delete(r.todos, uuid)
+}
+
+// DeleteAll deletes all the todos
+func (r *InMemoryTodos) DeleteAll() {
+	r.todos = make(map[uuid.UUID]*models.Todo)
 }
 
 // New creates an initialized todo repository

@@ -2,7 +2,7 @@
 A RESTful todo list API written in Go on top of the [Revel web framework](https://revel.github.io/).
 
 ## running
-Start the app with `revel run`. Unless changed in [app.conf](go-api/conf/app.conf), the app will start on port 9000 by default.
+Start the app with `revel run`. Unless changed in [app.conf](/conf/app.conf), the app will start on port 9000 by default.
 
 The following endpoints are available. Use a tool like [Postman](https://www.getpostman.com/) to exercise them.
 

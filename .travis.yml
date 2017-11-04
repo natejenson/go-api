@@ -2,3 +2,10 @@ language: go
 
 go:
   - 1.8.x
+  
+install:
+  - go get -v github.com/revel/revel/...
+  - go get -v github.com/revel/cmd/revel
+
+script:
+  - revel test github.com/natejenson/go-api

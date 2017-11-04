@@ -1,6 +1,10 @@
 package tests
 
 import (
+	"encoding/json"
+
+	"github.com/natejenson/go-api/app/models"
+	"github.com/natejenson/go-api/app/services"
 	"github.com/revel/revel/testing"
 )
 
@@ -9,7 +13,7 @@ type AppTest struct {
 }
 
 func (t *AppTest) Before() {
-	println("Set up")
+	services.GetTodoRepo().DeleteAll()
 }
 
 func (t *AppTest) TestUpPage() {
@@ -20,6 +24,19 @@ func (t *AppTest) TestUpPage() {
 	t.AssertContentType("text/html; charset=utf-8")
 }
 
-func (t *AppTest) After() {
-	println("Tear down")
+func (t *AppTest) TestGetAll() {
+	t.Get("/todos")
+	t.AssertOk()
+	v := make([]models.Todo, 0)
+	json.Unmarshal(t.ResponseBody, &v)
+	t.Assert(len(v) == 0)
+
+	todo := models.Todo{Title: "test todo"}
+	services.GetTodoRepo().Create(todo)
+
+	t.Get("/todos")
+	t.AssertOk()
+	v = make([]models.Todo, 0)
+	json.Unmarshal(t.ResponseBody, &v)
+	t.Assert(len(v) == 1)
 }
